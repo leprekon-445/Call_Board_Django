@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ ad.title }} - Доска объявлений{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-3">{{ ad.title }}</h1>
+    <p class="meta mb-2">Автор: <strong>{{ ad.author.username }}</strong></p>
+    <p class="meta mb-3">Категория: <strong>{{ ad.category }}</strong></p>
+    <div class="content mb-3">
+        {{ ad.content|safe }}
+    </div>
+    <p class="meta text-muted">Дата публикации: {{ ad.created_at|date:"d.m.Y H:i" }}</p>
+    <a href="{% url 'response_create' ad.id %}" class="btn btn-dark me-2">Отправить отклик</a>
+    <a href="{% url 'ads' %}" class="btn btn-secondary">← Назад к списку</a>
+</div>
+{% endblock %}
